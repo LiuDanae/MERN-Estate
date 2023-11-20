@@ -1,2 +1,0 @@
-# MERN-Estate
-logs
