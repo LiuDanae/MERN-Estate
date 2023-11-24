@@ -1,7 +1,7 @@
-import express, { json } from "express";
+import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routes/user.routes.js";
-import authRouter from "./controller/auth.controller.js";
+import router from "./routes/auth.routes.js";
 
 mongoose
   .connect(
@@ -16,18 +16,18 @@ mongoose
 
 const app = express();
 app.listen(3000, () => {
-  console.log("服务器执行了!!!");
+  console.log("server is running!!!");
 });
 app.use(express.json());
 app.use("/api/user", userRouter);
-app.use("/api/auth", authRouter);
+app.use("/api/auth", router);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-  const message = err.message || "Internet server error";
+  const message = err.message || "Internal Server Error";
   return res.status(statusCode).json({
     success: false,
     statusCode,
     message,
   });
-});
+}); //middleware :the server send status code to browser

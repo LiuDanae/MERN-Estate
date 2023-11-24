@@ -1,8 +1,9 @@
 import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import errorHandler from "../utils/error.js";
+import jwt from "jsonwebtoken";
 
-export default async function signup(req, res, next) {
+export async function signup(req, res, next) {
   const { username, email, password } = req.body;
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newUser = new User({ username, email, password: hashedPassword });
@@ -11,5 +12,24 @@ export default async function signup(req, res, next) {
     res.status(201).json("User created successfully!");
   } catch (error) {
     next(errorHandler(550, "error from the function"));
+  }
+}
+
+export async function signin(req, res, next) {
+  console.log("api signin2");
+  const { email, password } = req.body;
+  try {
+    const validUser = await User.findOne({ email });
+    if (!validUser) return next(errorHandler(404, "User not found!"));
+    const validPassword = bcryptjs.compareSync(password, validUser.password);
+    if (!validPassword) return next(errorHandler(401, "Wrong credentials!"));
+    const token = jwt.sign({ id: validUser._id }, "dsfadgadvldga2132");
+    const { password: pass, ...rest } = validUser._doc;
+    res
+      .cookie("access_token", token, { httpOnly: true })
+      .status(200)
+      .json(rest);
+  } catch (error) {
+    next(error);
   }
 }
