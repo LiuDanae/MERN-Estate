@@ -67,7 +67,7 @@ export default function SignUp() {
           onChange={handleChange}
         />
         <button
-          className="bg-slate-700 text-white p-3
+          className="bg-lime-600 text-white p-3
     rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading?'loading...':'Sign Up'}
@@ -76,7 +76,7 @@ export default function SignUp() {
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
         <Link to={"/sign-in"}>
-          <span className="text-blue-700">Sign In</span>
+          <span className="text-blue-700 font-bold">Sign In</span>
         </Link>
       </div>
       {error&&<p className="text-red-500 mt-5 ">{error}</p>}

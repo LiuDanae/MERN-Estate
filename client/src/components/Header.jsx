@@ -8,8 +8,8 @@ export default function Header() {
       <div className="flex justify-between items-center max-w-6xl mx-auto">
        <Link to="./">
         <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-          <span className="text-slate-500">Sahand</span>
-          <span className="text-slate-700">Estate</span>
+          <span className="text-lime-700">Sahand</span>
+          <span className="text-lime-600">Estate</span>
         </h1>
     </Link>
         <form className="bg-slate-100 p-3 rounded-lg flex items-center">
@@ -22,25 +22,24 @@ export default function Header() {
         </form>
         <ul className="flex gap-4">
           <Link to="/">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="font-bold hidden sm:inline text-lime-700 hover:underline">
               Home
             </li>
           </Link>
           <Link to="/about">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="font-bold hidden sm:inline text-lime-700 hover:underline">
               About
             </li>
           </Link>
           <Link to="/sign-in">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="font-bold hidden sm:inline text-lime-700 hover:underline">
               Sign in
             </li>
           </Link>
           <Link to="/sign-up">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="font-bold hidden sm:inline text-lime-700 hover:underline">
              Sign up 
             </li>
-            
           </Link>
         </ul>
       </div>
