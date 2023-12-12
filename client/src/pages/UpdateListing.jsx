@@ -7,10 +7,11 @@ import {
 } from "firebase/storage";
 import { app } from "../firebase";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 
 export default function UpdateListing() {
   const { currentUser } = useSelector((state) => state.user);
+  const params = useParams();
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
@@ -165,7 +166,7 @@ export default function UpdateListing() {
       <h1 className="text-3xl font-semibold text-center my-7">
         Create a Listing
       </h1>
-      <form onSubmit={handleSubmit}className="flex flex-col sm:flex-row gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <input
             type="text"
