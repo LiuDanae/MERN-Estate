@@ -52,7 +52,6 @@ export default function Listing() {
       )}
       {listing && !loading && !error && (
         <div>
-          <Swiper navigation>
            <Swiper navigation>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
@@ -66,27 +65,17 @@ export default function Listing() {
               </SwiperSlide>
             ))}
           </Swiper>
-          </Swiper>
           <div className="fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer">
-  <FaShare
-  className='text-slate-500'
-  onClick={() => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.href)
-        .then(() => {
-          setCopied(true);
-          setTimeout(() => {
-            setCopied(false);
-          }, 2000);
-        })
-        .catch((error) => {
-          console.error('Error copying to clipboard: ', error);
-        });
-    } else {
-      console.error('Clipboard API not supported');
-    }
-  }}
-/>
+            <FaShare
+              className='text-slate-500'
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                setCopied(true);
+                setTimeout(() => {
+                  setCopied(false);
+                }, 2000);
+              }}
+            />
           </div>
           {copied && (
             <p className="fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2">
